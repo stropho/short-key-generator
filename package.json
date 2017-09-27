@@ -1,15 +1,30 @@
 {
-  "name": "",
-  "version": "0.0.1",
-  "description": "",
+  "name": "short-key-generator",
+  "version": "0.0.9",
+  "description": "Generate sequence of keys based on specific alphabet",
   "keywords": [
+    "short",
+    "key",
+    "minify",
+    "minimize",
+    "JSON",
+    "generate",
+    "create",
+    "sequence",
+    "sequential",
+    "keymap"
   ],
   "license": "MIT",
+  "author": {
+    "name": "Stropho"
+  },
   "files": [
     "/dist"
   ],
   "main": "/dist/index.js",
   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stropho/short-key-generator.git"
   },
   "scripts": {
     "build": "gulp build",
