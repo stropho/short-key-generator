@@ -1,20 +1,10 @@
 /*global describe, expect, it, beforeEach*/
-import { PersonIndex } from './../../src/PersonIndex';
+import exported from './../../src/index';
 
-describe( 'unit:Person', () => {
+describe('expected exported variables', () => {
 
-  let idx;
-  beforeEach( () => {
-    idx = new PersonIndex();
-  } );
+  it('contains characterRange fn', () => {
+    expect(exported.characterRange).to.be.a('function');
+  });
 
-  it( 'should have a property person', () => {
-    expect( idx.person ).to.exist;
-    expect( idx.person ).to.be.an( 'object' );
-  } );
-
-  it( 'should have a property fullName', () => {
-    expect( idx.person ).to.have.a.property( 'fullName', 'Stefan Walther' );
-  } );
-
-} );
+});

@@ -1,1 +1,5 @@
-module.export = require( './PersonIndex' );
+import characterRange from './character-range';
+
+export default {
+  characterRange
+};
