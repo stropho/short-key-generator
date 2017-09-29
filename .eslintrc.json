@@ -1,9 +1,14 @@
 {
   "rules": {
-    "quotes": [2, "single"],
+    "array-bracket-spacing": ["warn", "never"],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "computed-property-spacing": ["warn", "never"],
     "no-console": 0,
-    "one-var": ["error", "never"],
-    "brace-style": ["error", "1tbs", { "allowSingleLine": true }]
+    "no-tabs": 1,
+    "object-curly-spacing": ["warn", "never"],
+    "one-var": ["error", { "initialized": "never", "uninitialized": "always" }],
+    "quotes": [2, "single"],
+    "space-in-parens": ["warn", "never"]
   },
   "env": {
     "browser": false,

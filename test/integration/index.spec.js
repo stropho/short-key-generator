@@ -1,8 +1,8 @@
 /*global describe, expect, it, beforeEach*/
-describe( 'integration:basic', () => {
+describe('integration:basic', () => {
 
-  it( 'should work', () => {
-    expect( true ).to.be.true;
-  } );
+  it('should work', () => {
+    expect(true).to.be.true;
+  });
 
-} );
+});

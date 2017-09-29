@@ -5,6 +5,15 @@
     "es6": true,
     "mocha": true
   },
+  "rules": {
+    "array-bracket-spacing": ["warn", "never"],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "computed-property-spacing": ["warn", "never"],
+    "no-tabs": 1,
+    "object-curly-spacing": ["warn", "never"],
+    "one-var": ["error", { "initialized": "never", "uninitialized": "always" }],
+    "space-in-parens": ["warn", "never"]
+  },
   "plugins": [
     "mocha"
   ],
