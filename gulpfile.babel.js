@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import sourceMaps from 'gulp-sourcemaps';
+import run from 'gulp-run-command'
 import babel from 'gulp-babel';
 import path from 'path';
 import del from 'del';
@@ -8,6 +9,9 @@ const paths = {
   es6Path: './src/**/*.*',
   es6: [ './src/**/*.js', '!./src/**/*.json' ],
   es5: './dist',
+
+  unitTest: './test/unit/**/*.spec.js',
+  integrationTest: './test/integration/**/*.spec.js',
   // Must be absolute or relative to source map
   sourceRoot: path.join( __dirname, 'src' )
 };
@@ -38,6 +42,22 @@ gulp.task( 'copy:nonJs', () => {
 
 gulp.task( 'watch', [ 'build' ], () => {
   gulp.watch( paths.es6, [ 'build' ] );
+} );
+
+gulp.task( 'test:unit',
+  run(`mocha '${paths.unitTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`)
+);
+
+gulp.task( 'test:integration',
+  run(`mocha '${paths.integrationTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`)
+);
+
+gulp.task( 'test', ['test:unit', 'test:integration']);
+
+
+gulp.task( 'test:unit:watch', () => {
+  gulp.start([ 'test:unit' ]);
+  gulp.watch( [paths.unitTest, paths.es6], [ 'test:unit' ] );
 } );
 
 gulp.task( 'default', [ 'watch' ] );

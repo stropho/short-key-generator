@@ -29,11 +29,14 @@
   "scripts": {
     "build": "gulp build",
     "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha --report text --check-coverage -- --timeout 5000 -u tdd --recursive ./test",
-    "lint": "eslint src",
+    "lint:src": "eslint src",
     "lint:test": "eslint test",
-    "test": "npm run lint && npm run test:unit && npm run test:integration",
-    "test:integration": "npm run lint && mocha './test/integration/**/*.spec.js' --compilers js:babel-core/register --require './test/mocha.conf.js'",
-    "test:unit": "mocha './test/unit/**/*.spec.js' --compilers js:babel-core/register --require './test/mocha.conf.js'"
+    "lint": "npm run lint:src && npm run lint:test",
+    "test:integration": "npm run lint:test && gulp test:integration",
+    "test:unit": "gulp test:unit",
+    "test": "npm run lint:test && gulp test",
+    "test:unit:watch": "gulp test:unit:watch",
+    "all": "npm run lint && gulp test && npm run coverage && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -50,6 +53,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-format-md": "*",
+    "gulp-run-command": "0.0.9",
     "gulp-sourcemaps": "^1.6.0",
     "mocha": "*",
     "nyc": "^7.0.0"
