@@ -7,4 +7,8 @@ describe('expected exported variables', () => {
     expect(exported.characterRange).to.be.a('function');
   });
 
+  it('contains sequentialKeyGen fn', () => {
+    expect(exported.sequentialKeyGen).to.be.a('function');
+  });
+
 });
