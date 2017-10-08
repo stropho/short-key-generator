@@ -16,7 +16,10 @@
     "es6": true
   },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+       "experimentalObjectRestSpread": true
+    }
   },
   "extends": "idiomatic"
 }

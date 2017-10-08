@@ -1,14 +1,18 @@
 import gulp from 'gulp';
 import sourceMaps from 'gulp-sourcemaps';
-import run from 'gulp-run-command'
+import run from 'gulp-run-command';
 import babel from 'gulp-babel';
 import path from 'path';
 import del from 'del';
+import fs from 'fs';
+import concat from 'gulp-concat';
+import gulpJsdoc2md from 'gulp-jsdoc-to-markdown';
 
 const paths = {
   es6Path: './src/**/*.*',
   es6: [ './src/**/*.js', '!./src/**/*.json' ],
   es5: './dist',
+  docs: './jsdoc2md',
 
   unitTest: './test/unit/**/*.spec.js',
   integrationTest: './test/integration/**/*.spec.js',
@@ -26,7 +30,7 @@ gulp.task( 'build', [ 'clean:dist', 'copy:nonJs' ], () => {
   return gulp.src( paths.es6 )
     .pipe( sourceMaps.init() )
     .pipe( babel( {
-      presets: [ 'es2015' ]
+      presets: [ 'env' ]
     } ) )
     .pipe( sourceMaps.write( '.', { sourceRoot: paths.sourceRoot } ) )
     .pipe( gulp.dest( paths.es5 ) );
@@ -45,19 +49,35 @@ gulp.task( 'watch', [ 'build' ], () => {
 } );
 
 gulp.task( 'test:unit',
-  run(`mocha '${paths.unitTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`)
+  run(`mocha '${paths.unitTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`,
+    {ignoreErrors: true}
+  )
 );
 
 gulp.task( 'test:integration',
-  run(`mocha '${paths.integrationTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`)
+  run(`mocha '${paths.integrationTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`,
+    {ignoreErrors: true}
+  )
 );
 
-gulp.task( 'test', ['test:unit', 'test:integration']);
-
-
 gulp.task( 'test:unit:watch', () => {
-  gulp.start([ 'test:unit' ]);
   gulp.watch( [paths.unitTest, paths.es6], [ 'test:unit' ] );
 } );
+
+gulp.task('docs', () => {
+  return gulp.src(paths.es6)
+    .pipe(concat('README.md'))
+    .pipe(gulpJsdoc2md({
+      template: fs.readFileSync(`${paths.docs}/README.hbs`, 'utf8'),
+      partial: [
+        `${paths.docs}/contribute.hbs`,
+        `${paths.docs}/intro.hbs`
+      ]
+    }))
+    .on('error', (err) => {
+      console.log('jsdoc2md failed:', err.message)
+    })
+    .pipe(gulp.dest('./'))
+});
 
 gulp.task( 'default', [ 'watch' ] );

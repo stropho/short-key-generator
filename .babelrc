@@ -1,6 +1,17 @@
 {
     "presets": [
-        "es2015"
+        [
+            "env", {
+                "targets": {
+                  "node": "current"
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        "transform-es2015-parameters",
+        "transform-es2015-destructuring",
+        "transform-object-rest-spread"
     ],
     "env": {
         "test": {

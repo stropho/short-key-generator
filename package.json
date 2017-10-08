@@ -1,7 +1,7 @@
 {
   "name": "short-key-generator",
   "version": "0.0.9",
-  "description": "Generate sequence of keys based on specific alphabet",
+  "description": "Generate sequence of short keys based on specific alphabet and provide a keymap",
   "keywords": [
     "short",
     "key",
@@ -34,9 +34,11 @@
     "lint": "npm run lint:src && npm run lint:test",
     "test:integration": "npm run lint:test && gulp test:integration",
     "test:unit": "gulp test:unit",
-    "test": "npm run lint:test && gulp test",
-    "test:unit:watch": "gulp test:unit:watch",
-    "all": "npm run lint && gulp test && npm run coverage && npm run build"
+    "test": "npm run lint:test && gulp test:unit && gulp test:integration",
+    "test:unit:watch": "npm run test:unit && gulp test:unit:watch",
+    "all": "npm run lint && gulp test:unit && gulp test:integration && npm run coverage && npm run build && npm run docs",
+    "clean": "gulp clean:dist",
+    "docs": "gulp docs"
   },
   "dependencies": {
     "bidirectional-map": "^1.0.3"
@@ -45,8 +47,10 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.11.4",
     "babel-istanbul": "^0.12.2",
-    "babel-plugin-istanbul": "^1.0.3",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "eslint": "^4.10.0",
@@ -54,7 +58,9 @@
     "eslint-plugin-mocha": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
     "gulp-format-md": "*",
+    "gulp-jsdoc-to-markdown": "^1.2.2",
     "gulp-run-command": "0.0.9",
     "gulp-sourcemaps": "^1.6.0",
     "mocha": "*",
