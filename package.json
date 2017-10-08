@@ -38,7 +38,9 @@
     "test:unit:watch": "gulp test:unit:watch",
     "all": "npm run lint && gulp test && npm run coverage && npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bidirectional-map": "^1.0.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.11.4",
