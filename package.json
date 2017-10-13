@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "gulp build",
-    "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha --report text --check-coverage -- --timeout 5000 -u tdd --recursive ./test",
+    "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha --report html --check-coverage -- --timeout 5000 -u tdd --recursive ./test",
     "lint:src": "eslint src",
     "lint:test": "eslint test",
     "lint": "npm run lint:src && npm run lint:test",
