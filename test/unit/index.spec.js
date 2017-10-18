@@ -11,4 +11,8 @@ describe('expected exported variables', () => {
     expect(exported.sequentialKeyGen).to.be.a('function');
   });
 
+  it('contains keyMap fn', () => {
+    expect(exported.keyMap).to.be.a('function');
+  });
+
 });
