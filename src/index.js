@@ -1,9 +1,13 @@
 import characterRange from './character-range';
-import sequentialKeyGen from './sequential-key-gen';
-import keyMap from './key-map';
+import {create as sequentialKeyGen, ctor as SequentialKeyGen} from './sequential-key-gen';
+import {create as keyMap, ctor as KeyMap} from './key-map';
 
-export default {
+export default keyMap;
+export {
   characterRange,
   sequentialKeyGen,
-  keyMap
+  keyMap,
+  // constructors - just in case somebody needs them
+  SequentialKeyGen,
+  KeyMap
 };
