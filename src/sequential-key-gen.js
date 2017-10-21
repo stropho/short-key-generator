@@ -44,13 +44,25 @@ class SequentialKeyGen {
   }
 }
 
-function sequentialKeyGenFactory(options) {
+
+/**
+* Function creating new instance of SequentialKeyGen
+* Exported as member `sequentialKeyGen`
+* @alias sequentialKeyGen
+* @param [options.alphabet=['A'-'Z']] {Array.<string>} strings used to generate new keys
+* @param [options.initCounter=0] {number} use if you want to skip a few keys at the beginning
+* @param [options.glueFn= fragments => fragments.join('')] {function} keys are created
+*    with one or more strings from the alphabet.
+*    By default, they are combined with `.join('')`
+* @return {SequentialKeyGen}
+*/
+function sequentialKeyGen(options) {
   return new SequentialKeyGen(options);
 }
 
 export {
   SequentialKeyGen as ctor,
-  sequentialKeyGenFactory as create
+  sequentialKeyGen as create
 };
 
-export default sequentialKeyGenFactory;
+export default sequentialKeyGen;
