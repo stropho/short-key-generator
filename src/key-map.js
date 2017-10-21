@@ -45,7 +45,19 @@ class KeyMap {
   }
 }
 
-function keyMapFactory(options = {}) {
+/**
+* Function creating new instance of KeyMap
+* Exported as member `keyMap`
+* @alias keyMap
+* @param [options.initInvertedMap={}] {Object.<string>} initialize map, e.g. `{shortKey: 'longKey'}`
+* @param [options.alphabet=['A'-'Z']] {Array.<string>} strings used to generate new keys
+* @param [options.initCounter=0] {number} use if you want to skip a few keys at the beginning
+* @param [options.glueFn= fragments => fragments.join('')] {function} keys are created
+*    with one or more strings from the alphabet.
+*    By default, they are combined with `.join('')`
+* @return {KeyMap}
+*/
+function keyMap(options = {}) {
   let {initInvertedMap, ...keyOpts} = options;
   let mapOpts = {initInvertedMap};
   return new KeyMap(sequentialKeyGen(keyOpts), mapOpts);
@@ -53,7 +65,7 @@ function keyMapFactory(options = {}) {
 
 export {
   KeyMap as ctor,
-  keyMapFactory as create
+  keyMap as create
 };
 
-export default keyMapFactory;
+export default keyMap;
