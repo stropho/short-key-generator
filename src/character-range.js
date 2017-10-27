@@ -1,11 +1,15 @@
 /**
+*  @module short-key-generator
+*  @typicalname ~
+*/
+/**
 * Utility function to create a range/array of characters
 * @param {string} firstChar first character of the desired range
 *   - first character of the provided string is used
 *   - non-strings are coverted to string
 *   - if no character (empty string) is provided, empty array is returned
 * @param {string} lastChar last character of the desired range; same behavior as firstChar
-* @param {string} optStep default is one, decimals are floored, 0 converted to 1
+* @param {string} optStep step - default is one, decimals are floored, 0 converted to 1
 * @return {Array.<string>} array of characters
 */
 function characterRange(firstChar, lastChar, optStep) {

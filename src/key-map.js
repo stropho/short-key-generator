@@ -2,12 +2,25 @@ import BiMap from 'bidirectional-map';
 import sequentialKeyGen from './sequential-key-gen';
 import {entriesToObject} from './utils';
 
+/**
+*  @module short-key-generator
+*  @typicalname ~
+*/
+/**
+* @class
+*/
 class KeyMap {
   constructor(keyGen, opts) {
     this.keyGen = keyGen;
     this.biMap = new BiMap(opts && opts.initInvertedMap || {});
   }
 
+  /**
+  * Get an existing short key for provided long key. If it doesn't exist,
+  * new short key is created
+  * @param {string} longKey
+  * @return {string}
+  */
   getOrCreate(longKey) {
     if (this.biMap.hasValue(longKey)) {
       return this.getKey(longKey)
@@ -23,10 +36,20 @@ class KeyMap {
     return newKey;
   }
 
+  /**
+  * Get an existing short key for provided long key
+  * @param {string} longKey
+  * @return {string|undefined} undefined if there is no entry for longKey
+  */
   getKey(longKey) {
     return this.biMap.getKey(longKey);
   }
 
+  /**
+  * Utility method to rename object keys
+  * @param {Object} obj
+  * @return {Object} new object with original values
+  */
   mapObjectKeys(obj) {
     return Object.keys(obj).reduce((acc, longKey) => {
       let shortKey = this.getOrCreate(longKey);
@@ -36,10 +59,16 @@ class KeyMap {
 
   }
 
+  /**
+  * @return {Object} map of all entries: `{longKey: shortKey}`
+  */
   getMap() {
     return entriesToObject(this.biMap.entries(), true);
   }
 
+  /**
+  * @return {Object} map of all entries: `{shortKey: longKey}`
+  */
   getInvertedMap() {
     return entriesToObject(this.biMap.entries());
   }
@@ -47,9 +76,7 @@ class KeyMap {
 
 /**
 * Function creating new instance of KeyMap
-* Exported as member `keyMap`
-* @alias keyMap
-* @param [options.initInvertedMap={}] {Object.<string>} initialize map, e.g. `{shortKey: 'longKey'}`
+* @param [options.initInvertedMap=Object()] {Object.<string,string>} initialize map, e.g. `{shortKey: 'longKey'}`
 * @param [options.alphabet=['A'-'Z']] {Array.<string>} strings used to generate new keys
 * @param [options.initCounter=0] {number} use if you want to skip a few keys at the beginning
 * @param [options.glueFn= fragments => fragments.join('')] {function} keys are created

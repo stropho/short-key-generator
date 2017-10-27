@@ -1,12 +1,21 @@
 import characterRange from './character-range';
 
+/**
+*  @module short-key-generator
+*  @typicalname ~
+*/
+
 let defaultOpts = {
   alphabet: characterRange('A', 'Z'),
   initCounter: 0,
   glueFn: keyFragments => keyFragments.join('')
 };
 
+/**
+* @class
+*/
 class SequentialKeyGen {
+
   constructor(opts = {}) {
     this.alphabet = (opts.alphabet || defaultOpts.alphabet).map(String);
     this.alphabetSize = this.alphabet.length;
@@ -27,7 +36,10 @@ class SequentialKeyGen {
 
     return nextKey;
   }
-
+  /**
+  * Generate new key
+  * @return {string}
+  */
   getNextKey() {
     let keyFragmentsCodes = [];
     let remainingValue = this.counter++;
@@ -44,11 +56,9 @@ class SequentialKeyGen {
   }
 }
 
-
 /**
 * Function creating new instance of SequentialKeyGen
 * Exported as member `sequentialKeyGen`
-* @alias sequentialKeyGen
 * @param [options.alphabet=['A'-'Z']] {Array.<string>} strings used to generate new keys
 * @param [options.initCounter=0] {number} use if you want to skip a few keys at the beginning
 * @param [options.glueFn= fragments => fragments.join('')] {function} keys are created

@@ -1,0 +1,67 @@
+## Contributing
+Feel free to suggest new features or create pull requests (PR).
+With PR, keep the test coverage at 100% ;)
+
+### Clone the repo and develop new feature or bug fix
+```sh
+$ git clone https://github.com/stropho/short-key-generator.git
+$ cd short-key-generator
+$ npm i
+$ npm run test:unit:watch
+```
+Tests autamatically run on change in `src/` or `test/` folder.
+
+To run other tasks like linter, coverage or build, simply run
+```sh
+$ npm run all
+```
+
+### Basic concept
+
+* JavaScript ES6
+* ES6 Transpiler
+  - [babel](https://babeljs.io/)
+* Build system
+  - [gulp](http://gulpjs.com/)
+* Test framework
+  - [mocha](https://mochajs.org/)
+  - [istanbul](https://istanbul.js.org/) & [nyc](https://github.com/istanbuljs/nyc)
+* Code style
+  - [idiomatic](https://github.com/rwaldron/idiomatic.js/)
+  - [eslint](http://eslint.org/) (using JS code style idiomatic)
+
+### Script Tasks
+
+#### build
+
+> Build the code from `./src`, store in `./dist`
+
+```sh
+$ npm run build
+```
+
+#### Test
+
+```sh
+## Unit tests
+$ npm run test:unit
+
+## All tests and linter for test files
+$ npm run test
+```
+
+#### Test coverage
+
+```sh
+$ npm run coverage
+```
+
+### Linting
+
+```sh
+## Lint `./src`
+$ npm run lint
+
+## Lint './test`
+$ npm run lint:test
+```

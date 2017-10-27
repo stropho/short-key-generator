@@ -1,0 +1,75 @@
+## Why?
+To reduce size of JSON with a large data set that is transmitted over the network.
+I've seen this in quite a few projects - always done from scratch and usually not very well.
+
+### Problem
+```js
+var toSend = {
+  data: [
+    {
+      selfExplanatoryKey1: 11,
+      selfExplanatoryKey2: 22,
+      ...
+      selfExplanatoryKeyN: 997
+    },
+    {
+      selfExplanatoryKey1: 66,
+      selfExplanatoryKey2: 77,
+      ...
+    },
+  ]
+};
+```
+The stringified JSON gets very large because of the long self-explanatory keys.
+
+### Solution
+```js
+var toSend = {
+  data: [
+    {
+      A: 11,
+      B: 22,
+      ...
+      Cm: 997
+    },
+    {
+      A: 66,
+      B: 77,
+      ...
+    },
+  ],
+  map: {
+    selfExplanatoryKey1: 'A',
+    selfExplanatoryKey2: 'B',
+    ....
+    selfExplanatoryKeyN: 'Cm'
+  }
+};
+```
+
+## Basic Usage
+
+```js
+var keyMapFactory = require('short-key-generator');
+var keyMap = keyMapFactory();
+keyMap.getOrCreate('selfExplanatoryKey1'); // 'A'
+keyMap.getOrCreate('selfExplanatoryKey2'); // 'B'
+keyMap.getOrCreate('selfExplanatoryKey1'); // 'A'
+
+// map object keys and keep the values unchanged
+keyMap.mapObjectKeys({
+  selfExplanatoryKey2: 1,
+  selfExplanatoryKey3: {selfExplanatoryKey4: 2}
+}); // {'B': 1, 'C': {selfExplanatoryKey4: 2}}
+
+keyMap.getMap();
+// returns
+//  {
+//    selfExplanatoryKey1: 'A',
+//    selfExplanatoryKey2: 'B',
+//    selfExplanatoryKey3: 'C'
+//  }
+
+// if you need inverted map like {A: 'selfExplanatoryKey1'}, use
+keyMap.getIvertedMap();
+```
