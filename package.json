@@ -29,6 +29,7 @@
   "scripts": {
     "build": "gulp build",
     "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha --report html --check-coverage -- --timeout 5000 -u tdd --recursive ./test",
+    "coveralls": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha --report lcovonly --check-coverage -- --timeout 5000 -u tdd --recursive ./test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "lint:src": "eslint src",
     "lint:test": "eslint test",
     "lint": "npm run lint:src && npm run lint:test",
@@ -52,6 +53,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "chai": "^3.5.0",
+    "coveralls": "^3.0.0",
     "del": "^2.2.2",
     "eslint": "^4.10.0",
     "eslint-config-idiomatic": "^4.0.0",
