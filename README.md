@@ -1,4 +1,6 @@
 # Short key generator
+[![Build Status](https://travis-ci.org/stropho/short-key-generator.svg?branch=master)](https://travis-ci.org/stropho/short-key-generator)
+[![Coverage Status](https://coveralls.io/repos/github/stropho/short-key-generator/badge.svg?branch=travis)](https://coveralls.io/github/stropho/short-key-generator?branch=travis)
 ## Why?
 To reduce size of JSON with a large data set that is transmitted over the network.
 I've seen this in quite a few projects - always done from scratch and usually not very well.

@@ -71,6 +71,7 @@ gulp.task('docs', () => {
       template: fs.readFileSync(`${paths.docs}/README.hbs`, 'utf8'),
       partial: [
         `${paths.docs}/contribute.hbs`,
+        `${paths.docs}/badges.hbs`,
         `${paths.docs}/intro.hbs`
       ]
     }))
