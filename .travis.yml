@@ -7,3 +7,8 @@ node_js:
 matrix:
   fast_finish: true
 script: npm run coveralls
+deploy:
+  provider: npm
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
