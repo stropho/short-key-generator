@@ -1,6 +1,6 @@
 {
   "name": "short-key-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate sequence of short keys based on specific alphabet and provide a keymap",
   "keywords": [
     "short",
