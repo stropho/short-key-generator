@@ -19,7 +19,8 @@
     "name": "Stropho"
   },
   "files": [
-    "/dist"
+    "/dist",
+    "README.md"
   ],
   "main": "/dist/index.js",
   "repository": {
