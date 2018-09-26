@@ -6,6 +6,7 @@
 test/actual
 actual
 coverage
+dist/
 
 # npm
 node_modules

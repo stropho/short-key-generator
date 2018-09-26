@@ -7,6 +7,7 @@ node_js:
 matrix:
   fast_finish: true
 script: npm run coveralls
+before_deploy: npm run build
 deploy:
   provider: npm
   email: $NPM_EMAIL
