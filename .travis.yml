@@ -1,16 +1,25 @@
 sudo: false
 language: node_js
 node_js:
-  - 'stable'
+  # - 'stable'
+  - '8'
   - '6'
   - '5'
 matrix:
   fast_finish: true
-script: npm run coveralls
-before_deploy: npm run build
-deploy:
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
+
+jobs:
+  include:
+    - stage: coverage
+      script:
+        - npm run coveralls
+    - stage: deploy
+      script:
+        - npm run build
+      deploy:
+        skip_cleanup: true
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_TOKEN
+        on:
+          tags: true

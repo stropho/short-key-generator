@@ -20,6 +20,7 @@
   },
   "files": [
     "/dist",
+    "index.js",
     "README.md"
   ],
   "main": "/dist/index.js",
@@ -53,6 +54,7 @@
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
     "chai": "^3.5.0",
     "coveralls": "^3.0.0",
     "del": "^2.2.2",

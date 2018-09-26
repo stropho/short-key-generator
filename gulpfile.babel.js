@@ -49,13 +49,13 @@ gulp.task( 'watch', [ 'build' ], () => {
 } );
 
 gulp.task( 'test:unit',
-  run(`mocha '${paths.unitTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`,
+  run(`mocha '${paths.unitTest}' --require './test/mocha.conf.js'`,
     {ignoreErrors: true}
   )
 );
 
 gulp.task( 'test:integration',
-  run(`mocha '${paths.integrationTest}' --compilers js:babel-core/register --require './test/mocha.conf.js'`,
+  run(`mocha '${paths.integrationTest}' --require './test/mocha.conf.js'`,
     {ignoreErrors: true}
   )
 );
